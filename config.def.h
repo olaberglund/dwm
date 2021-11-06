@@ -76,6 +76,7 @@ static Key keys[] = {
 	{ 0,				XK_Print,	spawn,		SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
 	{ ShiftMask,			XK_Print,	spawn,		SHCMD("maimpick") },
 	{ MODKEY,                       XK_n,      spawn,      	SHCMD("networkmanager_dmenu") },
+	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("blueman-manager") },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             		XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
