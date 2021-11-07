@@ -7,7 +7,7 @@ static const unsigned int borderpx  = 3;     /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro Light:Bold:size=12" };
+static const char *fonts[]          = { "Font Awesome 5 Free:size=16", "Source Code Pro Light:Bold:size=12" };
 static const char dmenufont[]       = { "Source Code Pro Light:Bold:size=12" };
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -67,7 +67,7 @@ static const char *lightdn[]  = { "xbacklight", "dec", "5", NULL };
 static const char *volup[]    = { "/bin/sh", "-c", "pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)", NULL };
 static const char *voldown[]  = { "/bin/sh", "-c", "pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)", NULL };
 static const char *muspause[] = { "playerctl", "play-pause", NULL };
-static const char *mute[]     = { "pamixer", "-t", NULL };
+static const char *mute[]     = { "/bin/sh", "-c", "pamixer -t; kill -44 $(pidof dwmblocks)", NULL };
 static const char *next[]     = { "playerctl", "next", NULL };
 static const char *prev[]     = { "playerctl", "previous", NULL };
 static const char *print[]    = { "maimfull", NULL };
