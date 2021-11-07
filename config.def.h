@@ -61,22 +61,35 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *browser[] 	= { "brave", NULL };
+static const char *lightup[] 	= { "xbacklight", "-inc", "5", NULL };
+static const char *lightdn[]  = { "xbacklight", "dec", "5", NULL };
+static const char *volup[]    = { "pamixer", "--allow-boost", "-i", "3", NULL };
+static const char *voldown[]  = { "pamixer", "--allow-boost", "-d", "3", NULL };
+static const char *muspause[] = { "playerctl", "player-pause", NULL };
+static const char *mute[]     = { "pamixer", "-t", NULL };
+static const char *next[]     = { "playerctl", "next", NULL };
+static const char *prev[]     = { "playerctl", "previous", NULL };
+static const char *print[]    = { "maim", "pic-full-$(date '+%y%m%d-%H%M-%S').png", NULL };
+static const char *maimpick[] = { "maimpick", NULL };
+static const char *nmdmenu[]  = { "networkmanager_dmenu", NULL };
+static const char *blueman[]  = { "blueman-manager", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0, XF86XK_MonBrightnessUp,							 spawn,					 SHCMD("xbacklight -inc 5") },	
-	{ 0, XF86XK_MonBrightnessDown,						 spawn,					 SHCMD("xbacklight -dec 5") },	
-	{ 0, XF86XK_AudioRaiseVolume,							 spawn,					 SHCMD("pamixer --allow-boost -i 3") },
-	{ 0, XF86XK_AudioLowerVolume,							 spawn,					 SHCMD("pamixer --allow-boost -d 3") },
-	{ 0, XF86XK_AudioPlay,          					 spawn,					 SHCMD("playerctl play-pause") },
-	{ 0, XF86XK_AudioMute,          					 spawn,					 SHCMD("pamixer -t") },
-	{ 0, XF86XK_AudioPause,         					 spawn,					 SHCMD("playerctl play-pause") },
-	{ 0, XF86XK_AudioNext,          					 spawn,					 SHCMD("playerctl next") },
-	{ 0, XF86XK_AudioPrev,          					 spawn,					 SHCMD("playerctl previous") },
-	{ 0, XK_Print,														 spawn,					 SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
-	{ ShiftMask,										XK_Print,	 spawn,					 SHCMD("maimpick") },
-	{ MODKEY,                       XK_n,      spawn,					 SHCMD("networkmanager_dmenu") },
-	{ MODKEY|ShiftMask,             XK_b,      spawn,					 SHCMD("blueman-manager") },
+	{ 0, XF86XK_MonBrightnessUp,							 spawn,					 {.v = lightup } },	
+	{ 0, XF86XK_MonBrightnessDown,						 spawn,					 {.v = lightdn } },
+	{ 0, XF86XK_AudioRaiseVolume,							 spawn,					 {.v = volup } },
+	{ 0, XF86XK_AudioLowerVolume,							 spawn,					 {.v = voldown } },
+	{ 0, XF86XK_AudioPlay,          					 spawn,					 {.v = muspause } },
+	{ 0, XF86XK_AudioMute,          					 spawn,					 {.v = mute } },
+	{ 0, XF86XK_AudioPause,         					 spawn,					 {.v = muspause } },
+	{ 0, XF86XK_AudioNext,          					 spawn,					 {.v = next } },
+	{ 0, XF86XK_AudioPrev,          					 spawn,					 {.v = prev } },
+	{ 0, XK_Print,														 spawn,					 {.v = print } },
+	{ ShiftMask,										XK_Print,	 spawn,					 {.v = maimpick } },
+	{ MODKEY,                       XK_n,      spawn,					 {.v = nmdmenu } },
+	{ MODKEY|ShiftMask,             XK_b,      spawn,					 {.v = blueman } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             					XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -94,7 +107,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,      spawn,      		 SHCMD("flameshot gui")},
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 //{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY,                       XK_space,  spawn,      		 SHCMD("brave") },
+	{ MODKEY,                       XK_space,  spawn,      		 {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
