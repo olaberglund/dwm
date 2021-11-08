@@ -63,7 +63,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *browser[] 	= { "brave", NULL };
 static const char *lightup[] 	= { "xbacklight", "-inc", "5", NULL };
-static const char *lightdn[]  = { "xbacklight", "dec", "5", NULL };
+static const char *lightdn[]  = { "xbacklight", "-dec", "5", NULL };
 static const char *volup[]    = { "/bin/sh", "-c", "pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)", NULL };
 static const char *voldown[]  = { "/bin/sh", "-c", "pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)", NULL };
 static const char *muspause[] = { "playerctl", "play-pause", NULL };
@@ -74,6 +74,7 @@ static const char *print[]    = { "maimfull", NULL };
 static const char *maimpick[] = { "maimpick", NULL };
 static const char *nmdmenu[]  = { "networkmanager_dmenu", NULL };
 static const char *blueman[]  = { "blueman-manager", NULL };
+static const char *mutemic[]  = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -86,6 +87,7 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioPause,         					 spawn,					 {.v = muspause } },
 	{ 0, XF86XK_AudioNext,          					 spawn,					 {.v = next } },
 	{ 0, XF86XK_AudioPrev,          					 spawn,					 {.v = prev } },
+	{ 0, XF86XK_AudioMicMute,									 spawn,					 {.v = mutemic } },	
 	{ 0, XK_Print,														 spawn,					 {.v = print } },
 	{ ShiftMask,										XK_Print,	 spawn,					 {.v = maimpick } },
 	{ MODKEY,                       XK_n,      spawn,					 {.v = nmdmenu } },
