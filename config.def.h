@@ -34,10 +34,10 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const float mfact			  = 0.55; /* factor of master area size [0.05..0.95] */
+static const int nmaster			  = 1;    /* number of clients in master area */
+static const int resizehints	  = 1;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1; 		/* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -75,6 +75,8 @@ static const char *maimpick[] = { "maimpick", NULL };
 static const char *nmdmenu[]  = { "networkmanager_dmenu", NULL };
 static const char *blueman[]  = { "blueman-manager", NULL };
 static const char *mutemic[]  = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
+static const char *flameshot[]= { "flameshot", "gui", NULL };
+
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -106,7 +108,7 @@ static Key keys[] = {
 	{ MODKEY,	                			XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 //{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_f,      spawn,      		 SHCMD("flameshot gui")},
+	{ MODKEY,                       XK_f,      spawn,      		 {.v = flameshot } },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 //{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY,                       XK_space,  spawn,      		 {.v = browser } },
